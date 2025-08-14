@@ -1,0 +1,10 @@
+# Caddy (HTTP/3) reverse proxy (example)
+{
+  servers { protocol { experimental_http3 } }
+}
+quicpair.example.com {
+  encode gzip zstd
+  reverse_proxy /signaling/* 127.0.0.1:8443
+  @ws { header Connection *Upgrade* header Upgrade websocket }
+  reverse_proxy @ws 127.0.0.1:8443
+}

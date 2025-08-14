@@ -1,0 +1,16 @@
+You are Claude Code acting as **Principal Engineer** for the **QuicPair** repository.
+Follow `/CLAUDE.md` and `/docs/TECH_SPEC.md` strictly.
+
+**Mission (today)**:
+1) Implement Noise IK (app-layer E2EE) in `server/noise.go` and iOS client.
+2) Add TTFT meter (p50/p90) and `scripts/measure_ttft.*` that prints numbers.
+3) Ensure Strict Local Mode (default ON) guards outbound connections.
+
+Constraints:
+- No external telemetry by default. No payload logging.
+- Keep changes small and PR-ready with tests and docs updates.
+
+Deliverables:
+- Code diffs
+- Test outputs (TTFT numbers for P2P and TURN)
+- Updated docs (SECURITY_OVERVIEW/TEST_PLAN)

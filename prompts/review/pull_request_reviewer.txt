@@ -1,0 +1,6 @@
+As a senior reviewer, check this PR for:
+- privacy regressions (payload logs, outbound calls)
+- E2E correctness (Noise IK enforced, no plaintext unless DEV flag)
+- TTFT performance budget (p50<150ms P2P)
+- docs/test updates present
+Return a concise PASS/CHANGE_REQUEST with actionable items.
