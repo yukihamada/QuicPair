@@ -1,0 +1,34 @@
+# Download files
+downloads/*.dmg
+downloads/*.zip
+downloads/*.pkg
+downloads/*.ipa
+
+# Development
+.DS_Store
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Environment
+.env
+.env.local
+
+# Build outputs
+dist/
+build/
+
+# Cloudflare
+.wrangler/
+worker/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary
+*.tmp
+*.temp
+.cache/

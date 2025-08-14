@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>QuicPair — クラウドに送らないAI</title>
+  <meta name="description" content="あなたのMacのLLMをiPhoneへP2P直結。E2E暗号化。外部送信ゼロ（既定）。初トークン < 150ms。">
+  
+  <!-- OGP -->
+  <meta property="og:title" content="QuicPair — クラウドに送らないAI">
+  <meta property="og:description" content="あなたのMacのLLMをiPhoneへP2P直結。E2E暗号化。外部送信ゼロ。">
+  <meta property="og:image" content="/assets/branding/icons/share-card.png">
+  <meta property="og:type" content="website">
+  
+  <!-- Favicons -->
+  <link rel="icon" href="/assets/branding/favicons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/branding/favicons/apple-touch-icon.png">
+  <link rel="manifest" href="/assets/branding/favicons/site.webmanifest">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <header class="nav">
+    <div class="container">
+      <a href="/" class="logo-link">
+        <img class="logo" src="/assets/branding/icons/logo_mark.svg" alt="QuicPair" />
+      </a>
+      <nav class="desktop-nav">
+        <a href="#features">特徴</a>
+        <a href="#how">使い方</a>
+        <a href="#privacy">プライバシー</a>
+        <a href="#download">ダウンロード</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <button class="mobile-menu" aria-label="メニュー">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation -->
+  <nav class="mobile-nav">
+    <a href="#features">特徴</a>
+    <a href="#how">使い方</a>
+    <a href="#privacy">プライバシー</a>
+    <a href="#download">ダウンロード</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>クラウドに送らないAI。<br><span class="accent">QuicPair。</span></h1>
+          <p class="subtitle">
+            あなたのMacのLLMを、iPhoneへP2P直結。<br>
+            <strong>E2E暗号化</strong>。<strong>外部送信ゼロ</strong>（既定）。<strong>初トークン &lt; 150ms</strong>。
+          </p>
+          
+          <!-- Smart Download Buttons -->
+          <div class="download-buttons" id="downloadSection">
+            <a class="cta primary download-mac" href="#download" data-platform="mac">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 17L10 11L4 5M12 19H20"/>
+              </svg>
+              Mac版をダウンロード
+            </a>
+            <a class="cta secondary download-ios" href="#download" data-platform="ios">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                <line x1="12" y1="18" x2="12" y2="18"/>
+              </svg>
+              iOS版を入手
+            </a>
+          </div>
+          
+          <div class="platform-note">
+            <span id="platformDetected"></span>
+          </div>
+        </div>
+        
+        <!-- Live Demo Stats -->
+        <div class="hero-stats">
+          <div class="stat-card">
+            <div class="stat-value">112<span class="unit">ms</span></div>
+            <div class="stat-label">TTFT (平均)</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">🔒</div>
+            <div class="stat-label">E2E暗号化</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">0</div>
+            <div class="stat-label">外部送信</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+      <div class="container">
+        <h2>なぜQuicPair？</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🔐</div>
+            <h3>完全プライベート</h3>
+            <p>会話はあなたの端末間のみ。クラウドサーバーを経由しません。</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>超低遅延</h3>
+            <p>P2P直結により、初回応答まで150ms以下を実現。</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🛡️</div>
+            <h3>二重暗号化</h3>
+            <p>WebRTC DTLS + Noise IKによる強固なE2E暗号化。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it Works -->
+    <section id="how" class="how">
+      <div class="container">
+        <h2>かんたん3ステップ</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>アプリをインストール</h3>
+              <p>MacとiPhoneにQuicPairをインストール。</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>QRでペアリング</h3>
+              <p>MacのQRコードをiPhoneで読み取り、安全に鍵交換。</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>すぐに使える</h3>
+              <p>iPhoneからMacのLLMへ直接アクセス。クラウド不要。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="download">
+      <div class="container">
+        <h2>今すぐダウンロード</h2>
+        <div class="download-grid">
+          <!-- Mac Download -->
+          <div class="download-card">
+            <img src="/assets/branding/icons/mac-icon.svg" alt="Mac" class="platform-icon">
+            <h3>Mac版</h3>
+            <p class="requirements">macOS 13.0以上<br>Apple Silicon推奨</p>
+            <a href="/downloads/QuicPair-mac-latest.dmg" class="cta primary" download>
+              ダウンロード (.dmg)
+            </a>
+            <div class="download-options">
+              <a href="/downloads/QuicPair-mac-latest.zip" class="text-link">ZIP版</a>
+              <span class="separator">•</span>
+              <a href="https://brew.sh" class="text-link">Homebrew</a>
+            </div>
+            <code class="install-command">brew install quicpair</code>
+          </div>
+
+          <!-- iOS Download -->
+          <div class="download-card">
+            <img src="/assets/branding/icons/iphone-icon.svg" alt="iPhone" class="platform-icon">
+            <h3>iOS版</h3>
+            <p class="requirements">iOS 16.0以上<br>iPhone 12以降推奨</p>
+            <a href="https://apps.apple.com/jp/app/quicpair/id123456789" class="cta primary">
+              App Storeで入手
+            </a>
+            <div class="download-options">
+              <a href="https://testflight.apple.com/join/abcdef" class="text-link">TestFlight Beta</a>
+            </div>
+            <p class="beta-note">※ ベータ版は限定公開中</p>
+          </div>
+        </div>
+
+        <!-- Setup Guide -->
+        <div class="setup-guide">
+          <h3>セットアップガイド</h3>
+          <ol>
+            <li>両方のアプリをインストール</li>
+            <li>Macでサーバーを起動（自動）</li>
+            <li>iPhoneでQRコードをスキャン</li>
+            <li>接続完了！</li>
+          </ol>
+          <a href="/docs/setup" class="text-link">詳しいセットアップ手順 →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Privacy Section -->
+    <section id="privacy" class="privacy">
+      <div class="container">
+        <h2>プライバシーファースト設計</h2>
+        <div class="privacy-grid">
+          <div class="privacy-item">
+            <h3>データの場所</h3>
+            <p>すべてのデータは<strong>あなたの端末内</strong>に留まります。外部サーバーへの送信は一切ありません。</p>
+          </div>
+          <div class="privacy-item">
+            <h3>暗号化</h3>
+            <p><strong>Noise IK + WebRTC DTLS</strong>による二重のE2E暗号化。中継サーバーも内容を読めません。</p>
+          </div>
+          <div class="privacy-item">
+            <h3>ログ</h3>
+            <p>会話内容のログは<strong>一切保存しません</strong>。接続メタデータのみ、オプトインで収集。</p>
+          </div>
+        </div>
+        <a href="/privacy-policy" class="cta ghost">プライバシーポリシー全文</a>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq">
+      <div class="container">
+        <h2>よくある質問</h2>
+        <div class="faq-grid">
+          <details class="faq-item">
+            <summary>どのLLMが使えますか？</summary>
+            <p>Ollama対応のすべてのモデル、llama.cpp互換モデル、およびカスタムモデルに対応しています。</p>
+          </details>
+          <details class="faq-item">
+            <summary>インターネット接続は必要ですか？</summary>
+            <p>同じネットワーク内なら不要です。異なるネットワークの場合はTURN中継が必要ですが、内容は暗号化されたままです。</p>
+          </details>
+          <details class="faq-item">
+            <summary>複数デバイスで使えますか？</summary>
+            <p>はい。1台のMacに複数のiPhoneから接続できます。各デバイスは独立した暗号鍵を持ちます。</p>
+          </details>
+          <details class="faq-item">
+            <summary>料金はかかりますか？</summary>
+            <p>QuicPair自体は無料です。TURN中継を使う場合は、自前のサーバーまたは有料サービスが必要な場合があります。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <h2>準備はいいですか？</h2>
+        <p>今すぐQuicPairで、プライベートで高速なAI体験を。</p>
+        <div class="cta-buttons">
+          <a href="#download" class="cta primary large">ダウンロード</a>
+          <a href="https://github.com/quicpair/quicpair" class="cta ghost large">GitHubで見る</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <img src="/assets/branding/icons/wordmark_horizontal.svg" alt="QuicPair" class="footer-logo">
+          <p>クラウドに送らないAI</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-column">
+            <h4>製品</h4>
+            <a href="#features">特徴</a>
+            <a href="#download">ダウンロード</a>
+            <a href="/docs">ドキュメント</a>
+            <a href="/changelog">更新履歴</a>
+          </div>
+          <div class="footer-column">
+            <h4>サポート</h4>
+            <a href="/docs/setup">セットアップガイド</a>
+            <a href="#faq">FAQ</a>
+            <a href="https://github.com/quicpair/quicpair/issues">Issue報告</a>
+          </div>
+          <div class="footer-column">
+            <h4>法的情報</h4>
+            <a href="/privacy-policy">プライバシーポリシー</a>
+            <a href="/terms">利用規約</a>
+            <a href="/licenses">ライセンス</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 QuicPair. All rights reserved.</p>
+        <div class="footer-social">
+          <a href="https://github.com/quicpair" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+          </a>
+          <a href="https://twitter.com/quicpair" aria-label="Twitter">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

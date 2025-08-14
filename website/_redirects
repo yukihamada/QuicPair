@@ -1,0 +1,18 @@
+# Cloudflare Pages redirects
+
+# Redirect root domain to www (if needed)
+# https://quicpair.com/* https://www.quicpair.com/:splat 301
+
+# App download redirects
+/download/mac /downloads/QuicPair-mac-latest.dmg 302
+/download/ios https://apps.apple.com/jp/app/quicpair/id123456789 302
+
+# Documentation redirects
+/docs https://docs.quicpair.com 302
+/github https://github.com/quicpair/quicpair 302
+
+# Legacy URLs
+/beta /download 301
+
+# 404 fallback
+/* /404.html 404

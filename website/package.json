@@ -1,0 +1,23 @@
+{
+  "name": "quicpair-website",
+  "version": "1.0.0",
+  "description": "QuicPair - Cloud-free AI website",
+  "scripts": {
+    "build": "echo 'Static site - no build required'",
+    "serve": "python3 -m http.server 8000",
+    "deploy": "wrangler publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quicpair/website.git"
+  },
+  "keywords": [
+    "quicpair",
+    "p2p",
+    "llm",
+    "webrtc",
+    "privacy"
+  ],
+  "author": "QuicPair Team",
+  "license": "MIT"
+}

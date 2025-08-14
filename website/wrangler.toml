@@ -1,0 +1,18 @@
+name = "quicpair-website"
+type = "webpack"
+account_id = ""
+workers_dev = true
+route = ""
+zone_id = ""
+
+[site]
+bucket = "./website"
+entry-point = "workers-site"
+
+[build]
+command = "npm run build"
+upload_dir = "website"
+
+[env.production]
+name = "quicpair-website-production"
+route = "quicpair.com/*"

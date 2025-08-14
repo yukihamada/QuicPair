@@ -1,0 +1,22 @@
+<svg width="1400" height="360" viewBox="0 0 1400 360" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .title { font: 700 140px Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; fill: #111;}
+    .tagline { font: 500 36px Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; fill: #444;}
+  </style>
+  <g transform="translate(0,0)">
+    <rect x="0" y="0" width="1400" height="360" fill="#ffffff"/>
+    <g transform="translate(20,20)">
+      <svg x="0" y="0" width="320" height="320" viewBox="0 0 1024 1024">
+        <rect width="1024" height="1024" rx="220" ry="220" fill="#ffffff"/>
+        <circle cx="512" cy="480" r="300" fill="#ea384c"/>
+        <circle cx="512" cy="480" r="200" fill="#ffffff"/>
+        <g transform="rotate(35 512 480)">
+          <rect x="620" y="430" width="200" height="60" rx="30" fill="#ea384c"/>
+        </g>
+        <circle cx="770" cy="235" r="22" fill="#ea384c"/>
+      </svg>
+      <text class="title" x="360" y="170">QuicPair</text>
+      <text class="tagline" x="360" y="250">Speed comes from privacy.</text>
+    </g>
+  </g>
+</svg>
