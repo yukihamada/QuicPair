@@ -1,0 +1,26 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#0b0b0f"/>
+  <g transform="translate(80,80)">
+    <svg x="0" y="0" width="160" height="160" viewBox="0 0 1024 1024">
+      <rect width="1024" height="1024" rx="220" ry="220" fill="#ffffff"/>
+      <circle cx="512" cy="480" r="300" fill="#ea384c"/>
+      <circle cx="512" cy="480" r="200" fill="#0b0b0f"/>
+      <g transform="rotate(35 512 480)">
+        <rect x="620" y="430" width="200" height="60" rx="30" fill="#ea384c"/>
+      </g>
+      <circle cx="770" cy="235" r="22" fill="#ea384c"/>
+    </svg>
+    <text x="200" y="90" fill="#fff" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="64" font-weight="800">QuicPair — 100msチャレンジ</text>
+    <text x="200" y="150" fill="#ea384c" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="40" font-weight="700">Speed comes from privacy.</text>
+    <text x="0" y="0" style="display:none;">Placeholders: {ttft_ms}, {e2e}, {strict}</text>
+  </g>
+  <g transform="translate(80,320)">
+    <text x="0" y="0" fill="#9ea3b0" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="36">TTFT</text>
+    <text x="0" y="70" fill="#ffffff" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="160" font-weight="900">{ttft_ms}<tspan font-size="72"> ms</tspan></text>
+    <text x="0" y="260" fill="#cbd0db" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="36">Badges</text>
+    <g transform="translate(0,300)">
+      <rect x="0" y="-40" width="180" height="56" rx="14" fill="#171a22"/><text x="20" y="-4" fill="#fff" font-size="28" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif">🔒 {e2e}</text>
+      <rect x="200" y="-40" width="240" height="56" rx="14" fill="#171a22"/><text x="220" y="-4" fill="#fff" font-size="28" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif">🛡 {strict}</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,24 @@
+name: QuicPair
+options:
+  bundleIdPrefix: com.hamada
+  deploymentTarget:
+    macOS: 13.0
+targets:
+  QuicPair:
+    type: application
+    platform: macOS
+    sources:
+      - path: QuicPair
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.hamada.QuicPair.mac
+        PRODUCT_NAME: QuicPair
+        DEVELOPMENT_TEAM: ""
+        CODE_SIGN_STYLE: Manual
+        CODE_SIGN_IDENTITY: "-"
+        INFOPLIST_FILE: QuicPair/Info.plist
+        MACOSX_DEPLOYMENT_TARGET: 13.0
+        SWIFT_VERSION: 5.0
+        GENERATE_INFOPLIST_FILE: NO
+        COMBINE_HIDPI_IMAGES: YES
+        CODE_SIGN_ENTITLEMENTS: QuicPair/QuicPair.entitlements

@@ -1,0 +1,27 @@
+{
+  "recommended_models": {
+    "balanced": {
+      "name": "qwen2.5:3b",
+      "expected_ttft_ms": 330,
+      "size": "1.9GB",
+      "quality": "good"
+    },
+    "fastest": {
+      "name": "smollm2:135m",
+      "expected_ttft_ms": 824,
+      "size": "270MB", 
+      "quality": "basic"
+    },
+    "original": {
+      "name": "llama3.1:8b-instruct-q4_K_M",
+      "expected_ttft_ms": 715,
+      "size": "4.9GB",
+      "quality": "best"
+    }
+  },
+  "server_config": {
+    "default_model": "qwen2.5:3b",
+    "fallback_model": "smollm2:135m",
+    "target_ttft_ms": 150
+  }
+}

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>QuicPair — クラウドに送らないAI</title>
+  <meta name="description" content="あなたのMacのLLMをiPhoneへP2P直結。E2E暗号化。外部送信ゼロ（既定）。初トークン &lt;150ms。">
+  <link rel="icon" href="../branding/favicons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../branding/favicons/apple-touch-icon.png">
+  <link rel="manifest" href="../branding/favicons/site.webmanifest">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>{
+    /* Minimal reset and CSS variables */
+  }</style>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <header class="nav">
+    <div class="container">
+      <img class="logo" src="../branding/icons/logo_mark.svg" alt="QuicPair logo" />
+      <nav><a href="#how">使い方</a><a href="#privacy">プライバシー</a><a href="#speed">速度</a><a href="#byow">オープンウェイト</a><a href="#faq">FAQ</a></nav>
+      <a class="cta" href="#waitlist">βに参加</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>クラウドに送らないAI。<span class="accent">QuicPair。</span></h1>
+        <p class="sub">あなたのMacのLLMを、iPhoneへP2P直結。<b>E2E暗号化</b>。<b>外部送信ゼロ</b>（既定）。<b>初トークン &lt;150ms</b>。</p>
+        <div class="cta-row">
+          <a class="cta" href="#waitlist">今すぐβに参加</a>
+          <a class="ghost" href="#demo">100msチャレンジを見る</a>
+        </div>
+        <div class="proofbar">
+          <span>🔒 E2E: On</span>
+          <span>🛡 Strict Local</span>
+          <span>⚡️ TTFT &lt; 150ms</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="how">
+      <div class="container grid">
+        <div>
+          <h2>どう動く？</h2>
+          <ol>
+            <li>iPhoneでQRを読み取り、Macと<b>鍵交換</b>（Noise IK準備）</li>
+            <li><b>P2P直結</b>（WebRTC/ICE）。詰んだらTURNでも<b>E2E</b>のまま</li>
+            <li>iPhoneからMacの<b>ローカルLLM</b>を叩く。雲の往復なし</li>
+          </ol>
+        </div>
+        <img src="../branding/icons/wordmark_horizontal.svg" alt="QuicPair wordmark"/>
+      </div>
+    </section>
+
+    <section id="privacy" class="privacy">
+      <div class="container">
+        <h2>速さはプライバシーから生まれる</h2>
+        <ul class="bullets">
+          <li><b>Private‑by‑Default</b>：既定で外部送信ゼロ。会話は端末の中だけ</li>
+          <li><b>E2E二重化</b>：DTLS + Noise IK（端末相互認証）</li>
+          <li><b>透明性</b>：内容ログなし。月次Transparency Noteを公開</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="speed" class="speed">
+      <div class="container">
+        <h2>100msチャレンジ</h2>
+        <p>初トークンまでの時間（TTFT）を自動計測。結果は1タップでシェア。</p>
+        <div class="scorecard">
+          <div class="score">112<span>ms</span></div>
+          <div class="badges"><span>🔒 E2E</span><span>🛡 Strict Local</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="byow" class="byow">
+      <div class="container">
+        <h2>オープンウェイト、持ち込み歓迎</h2>
+        <p>Ollama/llama.cppなどローカル推論に対応。公開ウェイト（BYOW）もローカル登録して最適経路で実行。</p>
+      </div>
+    </section>
+
+    <section id="faq" class="faq">
+      <div class="container">
+        <h2>FAQ</h2>
+        <details><summary>データはどこへ送られますか？</summary><p>既定ではどこにも送りません。端末間はE2Eで暗号化されます。</p></details>
+        <details><summary>ネットワークが厳しい環境でも使えますか？</summary><p>はい。TURN経由で中継しても内容はE2Eのままです。</p></details>
+        <details><summary>どのモデルが使えますか？</summary><p>Ollama対応モデル、ローカル持ち込みの公開ウェイトに順次対応します。</p></details>
+      </div>
+    </section>
+
+    <section id="waitlist" class="waitlist">
+      <div class="container card">
+        <h2>βに参加</h2>
+        <form onsubmit="event.preventDefault();this.reset();alert('Thanks!');">
+          <input required placeholder="メールアドレス"/>
+          <button class="cta" type="submit">登録する</button>
+        </form>
+        <small>送信内容はメンバー管理にのみ使用。広告目的の利用はしません。</small>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <span>© QuicPair</span>
+      <a href="#">プライバシー</a>
+      <a href="#">利用規約</a>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

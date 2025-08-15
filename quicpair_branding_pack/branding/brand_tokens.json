@@ -1,0 +1,13 @@
+{
+  "name": "QuicPair",
+  "accent_hex": "#ea384c",
+  "accent_rgb": [
+    234,
+    56,
+    76
+  ],
+  "bg_light": "#ffffff",
+  "bg_dark": "#0b0b0f",
+  "text": "#111111",
+  "font_stack": "Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif"
+}

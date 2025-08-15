@@ -1,0 +1,23 @@
+
+/* Localizable.strings (Japanese) */
+"welcome.title" = "クラウドに送らないAI、QuicPairへようこそ";
+"welcome.cta" = "はじめる";
+"privacy.pledge.title" = "プライバシー誓約";
+"privacy.pledge.body" = "既定で外部に送信しません。会話は端末の中だけ。匿名テレメトリもオフです。";
+"privacy.pledge.confirm" = "理解しました";
+"telemetry.title" = "匿名テレメトリ（任意）";
+"telemetry.send.success" = "接続の成否";
+"telemetry.send.ttft" = "TTFT（初トークン時間）";
+"telemetry.send.turn" = "TURN利用の有無";
+"telemetry.not_sent" = "送信しない: 入力/出力の内容、音声、ベクトル";
+"telemetry.agree" = "同意して続ける";
+"telemetry.skip" = "スキップ";
+"permissions.title" = "権限の許可";
+"pairing.title" = "ペアリング（QR）";
+"strictlocal.title" = "Strict Local Mode";
+"strictlocal.desc" = "外部への到達を禁止します（既定ON）";
+"test.title" = "接続テスト";
+"test.run" = "テスト接続";
+"share.cta" = "結果をシェア";
+"badge.e2e" = "E2E: On";
+"badge.strict" = "Strict Local";

@@ -1,0 +1,23 @@
+
+/* Localizable.strings (English) */
+"welcome.title" = "Welcome to private, local AI.";
+"welcome.cta" = "Get Started";
+"privacy.pledge.title" = "Privacy Pledge";
+"privacy.pledge.body" = "By default, nothing goes to the cloud. Conversations stay on your devices. Telemetry is OFF.";
+"privacy.pledge.confirm" = "I understand";
+"telemetry.title" = "Anonymous telemetry (optional)";
+"telemetry.send.success" = "Connection outcomes";
+"telemetry.send.ttft" = "TTFT (first-token time)";
+"telemetry.send.turn" = "TURN usage";
+"telemetry.not_sent" = "Not sent: prompts/responses, audio, embeddings";
+"telemetry.agree" = "Agree & Continue";
+"telemetry.skip" = "Skip";
+"permissions.title" = "Permissions";
+"pairing.title" = "Pairing (QR)";
+"strictlocal.title" = "Strict Local Mode";
+"strictlocal.desc" = "Blocks external reachability (default ON)";
+"test.title" = "Connection Test";
+"test.run" = "Run test";
+"share.cta" = "Share result";
+"badge.e2e" = "E2E: On";
+"badge.strict" = "Strict Local";

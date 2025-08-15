@@ -1,0 +1,18 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ea384c" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#ea384c" stop-opacity="0.92"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="220" ry="220" fill="#ffffff"/>
+  <!-- Q ring -->
+  <circle cx="512" cy="480" r="300" fill="url(#g)"/>
+  <circle cx="512" cy="480" r="200" fill="#ffffff"/>
+  <!-- Q tail (speed bar) -->
+  <g transform="rotate(35 512 480)">
+    <rect x="620" y="430" width="200" height="60" rx="30" fill="#ea384c"/>
+  </g>
+  <!-- Pair dot -->
+  <circle cx="770" cy="235" r="22" fill="#ea384c"/>
+</svg>

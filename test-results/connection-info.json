@@ -1,0 +1,7 @@
+{
+  "server": "192.168.0.194:8443",
+  "publicKey": "2jxkPqPBc1DWetx1wA+3J6d2uH3cEGrrPdOfCkkC16w=",
+  "protocol": "Noise_IK_25519_ChaChaPoly_BLAKE2b",
+  "model": "llama3.1:8b-instruct-q4_K_M",
+  "timestamp": "2025-08-15T10:30:00Z"
+}

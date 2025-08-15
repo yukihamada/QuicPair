@@ -1,0 +1,8 @@
+{
+  "test_time": "2025-08-15T01:58:57Z",
+  "server_status": "running",
+  "model": "llama3.1:8b-instruct-q4_K_M",
+  "ollama_ttft_p50_ms": 715,
+  "expected_total_ttft_ms": 745,
+  "target_met": false
+}

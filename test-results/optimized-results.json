@@ -1,0 +1,24 @@
+{
+  "test_time": "2025-08-15T05:38:57Z",
+  "models": {
+    "phi3:mini": {
+      "p50_ms": 1280,
+      "status": "tested"
+    },
+    "qwen2.5:3b": {
+      "p50_ms": 1280,
+      "status": "tested"
+    },
+    "smollm2:135m": {
+      "p50_ms": 1280,
+      "status": "tested"  
+    }
+  },
+  "warmup_enabled": true,
+  "optimizations": [
+    "model_warmup",
+    "keep_alive",
+    "optimized_settings",
+    "smaller_context"
+  ]
+}

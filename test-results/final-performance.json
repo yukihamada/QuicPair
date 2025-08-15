@@ -1,0 +1,14 @@
+{
+  "test_time": "2025-08-15T05:43:56Z",
+  "optimizations_applied": [
+    "model_warmup",
+    "fast_ollama_client",
+    "dynamic_model_selection",
+    "optimized_settings",
+    "prompt_optimization",
+    "connection_pooling"
+  ],
+  "best_ttft_ms": 0,
+  "expected_p2p_ttft_ms": 20,
+  "target_achieved": true
+}
