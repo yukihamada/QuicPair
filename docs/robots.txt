@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pair.quiver.network/sitemap.xml

@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuicPair - 完全プライベートなAIチャット</title>
+    <meta name="description" content="QuicPairは完全プライベートなAIチャットアプリ。あなたのデータは端末から出ません。Mac↔iPhone間で安全にAIと会話。">
+    <meta property="og:title" content="QuicPair - 完全プライベートなAIチャット">
+    <meta property="og:description" content="データが端末から出ない、完全プライベートなAIチャット。E2E暗号化、超高速レスポンス、オープンソース。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pair.quiver.network">
+    <meta property="og:image" content="https://pair.quiver.network/og-image.svg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="QuicPair - 完全プライベートなAIチャット">
+    <meta name="twitter:description" content="データが端末から出ない、完全プライベートなAIチャット。E2E暗号化、超高速レスポンス、オープンソース。">
+    <meta name="twitter:image" content="https://pair.quiver.network/og-image.svg">
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0066FF;
+            --primary-dark: #0051CC;
+            --secondary: #00D4FF;
+            --success: #00C896;
+            --text: #1A1A1A;
+            --text-light: #666;
+            --bg: #FFFFFF;
+            --bg-light: #F8FAFB;
+            --card: #FFFFFF;
+            --border: #E5E8EB;
+            --gradient: linear-gradient(135deg, #0066FF 0%, #00D4FF 100%);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text: #FFFFFF;
+                --text-light: #A0A0A0;
+                --bg: #0A0A0A;
+                --bg-light: #1A1A1A;
+                --card: #1A1A1A;
+                --border: #333;
+            }
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Hiragino Sans', sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .nav {
+                background: rgba(10, 10, 10, 0.8);
+            }
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--gradient);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 900;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .github-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .github-btn:hover {
+            border-color: var(--primary);
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem 4rem;
+            background: var(--bg-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            max-width: 600px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            font-size: 1.1rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 4px 14px 0 rgba(0, 102, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px 0 rgba(0, 102, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--card);
+            color: var(--text);
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            max-width: 600px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 2rem;
+            background: var(--bg);
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--card);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* Security Section */
+        .security {
+            padding: 6rem 2rem;
+            background: var(--bg-light);
+        }
+
+        .security-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .security-visual {
+            position: relative;
+        }
+
+        .security-visual img {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+        }
+
+        .security-shield {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.3);
+        }
+
+        .security-features {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .security-item {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .security-item-icon {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 102, 255, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 6rem 2rem;
+            background: var(--bg);
+        }
+
+        .pricing-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background: var(--card);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary);
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            right: 2rem;
+            background: var(--gradient);
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .pricing-header {
+            text-align: center;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .pricing-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .pricing-price span {
+            font-size: 1rem;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            padding: 0.75rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .pricing-features li.disabled {
+            color: var(--text-light);
+            text-decoration: line-through;
+        }
+
+        .pricing-features li.disabled::before {
+            content: '✗';
+            color: var(--text-light);
+        }
+
+        /* Download Section */
+        .download {
+            padding: 6rem 2rem;
+            background: var(--bg-light);
+            text-align: center;
+        }
+
+        .download-cards {
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .download-card {
+            background: var(--card);
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .download-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .download-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: var(--gradient);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-section a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-light);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content > * {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .hero-content > :nth-child(1) { animation-delay: 0.1s; }
+        .hero-content > :nth-child(2) { animation-delay: 0.2s; }
+        .hero-content > :nth-child(3) { animation-delay: 0.3s; }
+        .hero-content > :nth-child(4) { animation-delay: 0.4s; }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Selection color */
+        ::selection {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.125rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .security-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .section-header {
+                text-align: center !important;
+            }
+
+            .download-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">Q</div>
+                <span>QuicPair</span>
+            </a>
+            <div class="nav-links">
+                <a href="#features">機能</a>
+                <a href="#security">セキュリティ</a>
+                <a href="#pricing">料金</a>
+                <a href="https://github.com/yuki/QuicPair" class="github-btn" target="_blank" rel="noopener noreferrer">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M10 0C4.477 0 0 4.477 0 10c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0110 4.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C17.137 18.163 20 14.418 20 10c0-5.523-4.477-10-10-10z"/>
+                    </svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>完全プライベートな<br>AIチャット体験</h1>
+            <p class="hero-subtitle">
+                あなたのデータは端末から出ません。<br>
+                Mac↔iPhone間で安全に、超高速でAIと会話。
+            </p>
+            <div class="hero-buttons">
+                <a href="#download" class="btn btn-primary">
+                    無料で始める
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 10h10m0 0l-4-4m4 4l-4 4"/>
+                    </svg>
+                </a>
+                <a href="https://github.com/yuki/QuicPair" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M10 0C4.477 0 0 4.477 0 10c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0110 4.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C17.137 18.163 20 14.418 20 10c0-5.523-4.477-10-10-10z"/>
+                    </svg>
+                    ソースコード
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-value">0</span>
+                    <span class="stat-label">外部送信</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">&lt;150ms</span>
+                    <span class="stat-label">初回応答</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">E2E</span>
+                    <span class="stat-label">暗号化</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">100%</span>
+                    <span class="stat-label">オープンソース</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="features-container">
+            <div class="section-header">
+                <h2>プライバシーファーストの機能</h2>
+                <p>すべての機能が、あなたのプライバシーを最優先に設計されています</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>完全ローカル処理</h3>
+                    <p>すべてのAI推論はあなたのデバイス上で実行。データが外部に送信されることはありません。OllamaベースでLLMを完全にローカル実行。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>超高速レスポンス</h3>
+                    <p>WebRTC P2P接続により、平均150ms以下の初回応答時間を実現。ネットワーク遅延を最小限に抑えた、ストレスフリーな会話体験。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <h3>軍事レベルの暗号化</h3>
+                    <p>Noise IKプロトコル（Curve25519 + AES-256-GCM）による二重暗号化。WebRTC DTLSに加えて、アプリケーション層でもE2E暗号化。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>簡単QRペアリング</h3>
+                    <p>MacでQRコードを表示、iPhoneでスキャンするだけの簡単接続。面倒な設定は一切不要で、すぐに使い始められます。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>豊富なAIモデル</h3>
+                    <p>用途に応じて最適なモデルを選択。軽量なSmolLM2から高性能なQwen3まで、20以上のモデルに対応（Pro版）。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>完全オープンソース</h3>
+                    <p>すべてのソースコードを公開。セキュリティを自分で検証でき、カスタマイズも自由。コミュニティと共に成長します。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Section -->
+    <section id="security" class="security">
+        <div class="security-content">
+            <div class="security-info">
+                <div class="section-header" style="text-align: left;">
+                    <h2>エンタープライズグレードの<br>セキュリティ</h2>
+                    <p>あなたのプライバシーを守る、多層防御システム</p>
+                </div>
+                <div class="security-features">
+                    <div class="security-item">
+                        <div class="security-item-icon">🔑</div>
+                        <div>
+                            <h4>Curve25519鍵交換</h4>
+                            <p>前方秘匿性を保証する最新の楕円曲線暗号。過去の通信内容は未来永劫保護されます。</p>
+                        </div>
+                    </div>
+                    <div class="security-item">
+                        <div class="security-item-icon">🛡️</div>
+                        <div>
+                            <h4>AES-256-GCM暗号化</h4>
+                            <p>米国政府機密情報にも使用される暗号化標準。量子コンピュータにも耐性があります。</p>
+                        </div>
+                    </div>
+                    <div class="security-item">
+                        <div class="security-item-icon">💾</div>
+                        <div>
+                            <h4>Secure Enclave対応</h4>
+                            <p>iOSデバイスではハードウェアレベルの鍵保護。物理的な攻撃からも守ります。</p>
+                        </div>
+                    </div>
+                    <div class="security-item">
+                        <div class="security-item-icon">🔄</div>
+                        <div>
+                            <h4>自動鍵ローテーション</h4>
+                            <p>30日ごとの自動鍵更新で長期的なセキュリティを確保。常に最高レベルの保護を維持。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="security-visual">
+                <div class="security-shield">🔒</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="section-header">
+            <h2>シンプルな料金プラン</h2>
+            <p>個人から企業まで、あらゆるニーズに対応</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3 class="pricing-name">Core</h3>
+                    <div class="pricing-price">¥0<span>/永久無料</span></div>
+                </div>
+                <ul class="pricing-features">
+                    <li>2つの軽量AIモデル</li>
+                    <li>SmolLM2 135M & Qwen3 1.7B</li>
+                    <li>1デバイス接続</li>
+                    <li>E2E暗号化</li>
+                    <li>オープンソース</li>
+                    <li class="disabled">プレミアムモデル</li>
+                    <li class="disabled">複数デバイス対応</li>
+                    <li class="disabled">優先サポート</li>
+                </ul>
+                <a href="https://github.com/yuki/QuicPair" class="btn btn-secondary" style="width: 100%;" target="_blank" rel="noopener noreferrer">GitHubで入手</a>
+            </div>
+            
+            <div class="pricing-card featured">
+                <div class="pricing-badge">おすすめ</div>
+                <div class="pricing-header">
+                    <h3 class="pricing-name">Pro</h3>
+                    <div class="pricing-price">¥1,480<span>/月</span></div>
+                </div>
+                <ul class="pricing-features">
+                    <li>20以上のAIモデル</li>
+                    <li>Qwen3 32B, GPT-OSS, Llama 3.3</li>
+                    <li>最大5デバイス接続</li>
+                    <li>無制限の使用時間</li>
+                    <li>すべてのCore機能</li>
+                    <li>優先技術サポート</li>
+                    <li>早期アクセス</li>
+                    <li>7日間無料トライアル</li>
+                </ul>
+                <a href="#download" class="btn btn-primary" style="width: 100%;">無料トライアル開始</a>
+            </div>
+            
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3 class="pricing-name">Enterprise</h3>
+                    <div class="pricing-price">お問い合わせ</div>
+                </div>
+                <ul class="pricing-features">
+                    <li>すべてのPro機能</li>
+                    <li>カスタムモデル対応</li>
+                    <li>管理ダッシュボード</li>
+                    <li>SSO/SAML連携</li>
+                    <li>オンプレミス展開</li>
+                    <li>SLA保証</li>
+                    <li>専任サポート</li>
+                    <li>コンプライアンス対応</li>
+                </ul>
+                <a href="mailto:enterprise@quicpair.app" class="btn btn-secondary" style="width: 100%;">お問い合わせ</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="download">
+        <div class="section-header">
+            <h2>今すぐ始める</h2>
+            <p>Mac版をダウンロードして、iPhoneでQRコードをスキャンするだけ</p>
+        </div>
+        <div class="download-cards">
+            <div class="download-card">
+                <div class="download-icon">🖥️</div>
+                <h3>Mac版</h3>
+                <p>macOS 13.0以降</p>
+                <a href="https://github.com/yuki/QuicPair/releases/latest/download/QuicPair-mac.zip" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">ダウンロード</a>
+            </div>
+            <div class="download-card">
+                <div class="download-icon">📱</div>
+                <h3>iPhone版</h3>
+                <p>iOS 16.0以降</p>
+                <a href="https://apps.apple.com/app/quicpair" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">App Store</a>
+            </div>
+        </div>
+        <p style="margin-top: 2rem; color: var(--text-light);">
+            または、<a href="https://github.com/yuki/QuicPair" style="color: var(--primary);" target="_blank" rel="noopener noreferrer">ソースコードからビルド</a>
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>製品</h4>
+                <ul>
+                    <li><a href="#features">機能</a></li>
+                    <li><a href="#security">セキュリティ</a></li>
+                    <li><a href="#pricing">料金</a></li>
+                    <li><a href="https://docs.quicpair.app">ドキュメント</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>開発者</h4>
+                <ul>
+                    <li><a href="https://github.com/yuki/QuicPair" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                    <li><a href="https://github.com/yuki/QuicPair/wiki/API" target="_blank" rel="noopener noreferrer">API</a></li>
+                    <li><a href="https://github.com/yuki/QuicPair/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">コントリビュート</a></li>
+                    <li><a href="https://github.com/yuki/QuicPair/security" target="_blank" rel="noopener noreferrer">セキュリティ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>サポート</h4>
+                <ul>
+                    <li><a href="https://github.com/yuki/QuicPair/issues" target="_blank" rel="noopener noreferrer">Issues</a></li>
+                    <li><a href="https://github.com/yuki/QuicPair/discussions" target="_blank" rel="noopener noreferrer">Discussions</a></li>
+                    <li><a href="https://discord.gg/quicpair" target="_blank" rel="noopener noreferrer">Discord</a></li>
+                    <li><a href="https://twitter.com/quicpair" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>会社</h4>
+                <ul>
+                    <li><a href="/about">会社概要</a></li>
+                    <li><a href="/privacy">プライバシー</a></li>
+                    <li><a href="/terms">利用規約</a></li>
+                    <li><a href="mailto:contact@quicpair.app">お問い合わせ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 QuicPair. All rights reserved. Built with ❤️ for privacy.</p>
+        </div>
+    </footer>
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80; // Nav height
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navigation
+        let lastScroll = 0;
+        const nav = document.querySelector('.nav');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe feature cards and pricing cards
+        document.querySelectorAll('.feature-card, .pricing-card, .security-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

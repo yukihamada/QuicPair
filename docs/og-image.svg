@@ -1,0 +1,37 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="630" fill="#0A0A0A"/>
+    
+    <!-- Background gradient -->
+    <rect width="1200" height="630" fill="url(#bg-gradient)" opacity="0.3"/>
+    
+    <!-- Logo -->
+    <rect x="520" y="80" width="160" height="160" rx="40" fill="url(#logo-gradient)"/>
+    <path d="M600 120L600 160M600 160L600 200M640 160L600 160M600 160L560 160" stroke="white" stroke-width="16" stroke-linecap="round"/>
+    
+    <!-- Title -->
+    <text x="600" y="320" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="72" font-weight="800" text-anchor="middle" fill="white">QuicPair</text>
+    
+    <!-- Subtitle -->
+    <text x="600" y="380" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="32" font-weight="400" text-anchor="middle" fill="white" opacity="0.8">完全プライベートなAIチャット</text>
+    
+    <!-- Features -->
+    <g opacity="0.6">
+        <text x="300" y="480" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="24" font-weight="500" text-anchor="middle" fill="white">🔒 E2E暗号化</text>
+        <text x="600" y="480" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="24" font-weight="500" text-anchor="middle" fill="white">⚡ &lt;150ms</text>
+        <text x="900" y="480" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="24" font-weight="500" text-anchor="middle" fill="white">🌐 オープンソース</text>
+    </g>
+    
+    <!-- URL -->
+    <text x="600" y="560" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="20" font-weight="400" text-anchor="middle" fill="white" opacity="0.5">pair.quiver.network</text>
+    
+    <defs>
+        <linearGradient id="bg-gradient" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#0066FF"/>
+            <stop offset="1" stop-color="#00D4FF"/>
+        </linearGradient>
+        <linearGradient id="logo-gradient" x1="520" y1="80" x2="680" y2="240" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#0066FF"/>
+            <stop offset="1" stop-color="#00D4FF"/>
+        </linearGradient>
+    </defs>
+</svg>

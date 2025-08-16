@@ -1,0 +1,14 @@
+# GitHub Pages configuration
+title: QuicPair - 完全プライベートなAIチャット
+description: データが端末から出ない、完全プライベートなAIチャット。E2E暗号化、超高速レスポンス、オープンソース。
+url: https://pair.quiver.network
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+theme: null
+
+# Exclude files
+exclude:
+  - README.md
+  - .gitignore
