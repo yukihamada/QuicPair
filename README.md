@@ -1,124 +1,118 @@
-# QuicPair
+# QuicPair — Private-by-Default なエッジAIチャット
+**Mac ↔ iPhone を超低遅延で直結。推論はローカル優先、必要な時だけ世界へスケール。**  
+*Private first. Scale when you choose.*
 
-<p align="center">
-  <img src="docs/quicpair-logo.svg" width="120" alt="QuicPair Logo">
-</p>
-
-<p align="center">
-  <strong>完全プライベートなAIチャット - あなたのデータは端末から出ません</strong>
-</p>
-
-<p align="center">
-  <a href="https://github.com/yukihamada/QuicPair/releases"><img src="https://img.shields.io/github/v/release/yukihamada/QuicPair?style=flat-square" alt="Release"></a>
-  <a href="https://github.com/yukihamada/QuicPair/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="License"></a>
-  <a href="https://yukihamada.github.io/QuicPair/"><img src="https://img.shields.io/badge/website-live-brightgreen.svg?style=flat-square" alt="Website"></a>
-  <a href="https://github.com/yukihamada/QuicPair/actions"><img src="https://img.shields.io/github/actions/workflow/status/yukihamada/QuicPair/test.yml?style=flat-square" alt="Build Status"></a>
-</p>
+- 公式サイト（QuicPair）: https://github.com/yukihamada/QuicPair
+- 連携プロジェクト（QUIVer）: https://github.com/yukihamada/quiver
 
 ---
 
-QuicPairは、MacとiPhone間でWebRTCを使用した直接P2P通信により、**完全にローカルなAI推論**を実現する革新的なアプリケーションです。データは一切外部に送信されず、軍用レベルの暗号化で保護されます。
+## 目次
+- [概要](#概要)
+- [なぜQuicPairか](#なぜquicpairか)
+- [主な機能](#主な機能)
+- [アーキテクチャ](#アーキテクチャ)
+- [インストール](#インストール)
+- [使い方](#使い方)
+- [料金プラン](#料金プラン)
+- [セキュリティ設計](#セキュリティ設計)
+- [QUIVerとの連携](#quiverとの連携)
+- [ベンチマークと計測](#ベンチマークと計測)
+- [よくある質問](#よくある質問)
+- [開発と貢献](#開発と貢献)
+- [ライセンス](#ライセンス)
 
-## 🚀 デモ
+---
 
-<p align="center">
-  <img src="docs/demo.gif" width="600" alt="QuicPair Demo">
-</p>
+## 概要
+**QuicPair** は、Mac上のローカルLLM（Ollama/MLX 等）を **iPhoneから瞬時に使える**ようにする、プライバシー最優先のAIチャットアプリです。  
+既定では**端末外に平文を出さず**、**E2E暗号化**されたP2P接続で会話します。負荷が大きい処理が必要な場合のみ、ユーザーの同意のもとで**QUIVer**ネットワークに**1タップでスケール**できます。
 
-## ✨ 主要機能
+**このリポジトリには：**
+- macOSアプリ / iOSアプリ（Swift/SwiftUI）
+- Go製のWebRTCサーバ／Ollamaクライアント
+- スクリプト・ドキュメント
+が含まれます。
 
-### 🔒 **完全なプライバシー保護**
-- **Private-by-Default**: データは端末から一切出ません
-- **E2E暗号化**: WebRTC DTLS + Noise IK による二重暗号化
-- **Strict Local Mode**: LAN/Tailscale内のみの通信（既定で有効）
-- **ゼロログポリシー**: 会話内容は一切記録されません
+---
 
-### ⚡ **超高速レスポンス**
-- **TTFT < 150ms**: 業界最速クラスの初回応答時間
-- **最適化されたモデル選択**: プロンプト長に応じた自動最適化
-- **事前ウォームアップ**: よく使うモデルを自動的に準備
+## なぜQuicPairか
+- **プライバシー**：ローカル推論が前提。オフロード時も**明示の同意**と**暗号化**を徹底。
+- **即応性**：ローカル＋ペアリングに最適化した設計で**TTFTの短縮**を追求。
+- **シンプル**：QR ペアリング、1クリックで利用開始。モデル導入も自動化（Pro）。
 
-### 🧠 **豊富なAIモデル**
-- **最新2025年モデル**: Qwen3シリーズ、GPT-OSS、Jan-Nano
-- **30以上のモデル**: 用途に応じて選択可能
-- **自動インストール**: Ollamaを自動でセットアップ
+---
 
-### 📱 **シームレスな連携**
-- **QRコード接続**: 簡単ワンタップペアリング
-- **リアルタイムチャット**: 遅延のない自然な会話
-- **クロスプラットフォーム**: Mac ↔ iPhone 完全対応
+## 主な機能
+- **完全ローカル実行（既定）**：端末内で推論を完結。ゼロテレメトリ設計。
+- **超低遅延P2P**：WebRTC データチャネル＋アプリ層E2E。
+- **スコープスイッチ**：  
+  - `Local Only`（既定）  
+  - `My Devices (E2E)`（自分の他端末へ）  
+  - `Global (QUIVer)`（ネットワークへオフロード）
+- **モデル運用**：Ollama/MLX 連携、（Proで）**自動量子化・プリウォーム**。
+- **データ分類プリセット**：機密/社内/公開可 で送信範囲を一目で管理。
+- **計算レシート添付**：QUIVer使用時、**モデルID/重みハッシュ/署名/料金**を結果に添付。
 
-## 🏗️ アーキテクチャ
+---
 
-```mermaid
-graph TB
-    subgraph "iPhone"
-        A[QuicPair iOS App<br/>Swift/WebRTC]
-    end
-    
-    subgraph "Mac"
-        B[QuicPair Mac App<br/>SwiftUI]
-        C[Go WebRTC Server<br/>Port 8443]
-        D[Ollama<br/>Local AI Engine]
-    end
-    
-    A <-->|"WebRTC P2P<br/>DataChannel 'llm'"| C
-    B <--> C
-    C <--> D
-    
-    style A fill:#0066FF,color:#fff
-    style B fill:#0066FF,color:#fff
-    style C fill:#00D4FF,color:#000
-    style D fill:#00C896,color:#fff
+## アーキテクチャ
+
+```
+[iPhone App]  ── Noise IK (X25519/AES-GCM/BLAKE2) ──  [Mac App]
+    │                     アプリ層E2E                      │
+    └────── WebRTC (DTLS-SRTP / DataChannel) ────────┘
+                              │
+                              └─ Ollama / MLX (Local LLM)
 ```
 
-## 📦 インストール
+- **既定**はローカル完結。  
+- ネットワーク条件により **STUN/TURN** を利用する場合があります（※内容はE2E暗号化されます）。  
+- QUIVerへオフロードする場合は、**送信前に見積と同意**を得てから実行します。
 
-### macOS (推奨)
+---
 
+## インストール
+### 1) macOS（推奨）
+1. **Releases** から最新の DMG を取得  
+   https://github.com/yukihamada/QuicPair/releases  
+2. DMG を開き、アプリを Applications にドラッグ
+3. 初回起動で **Ollama** を自動セットアップ（または既存環境に接続）
+
+> Homebrew Cask の提供がある場合は `brew install --cask quicpair` をご利用ください。
+
+### 2) iOS
+- App Store（準備中）  
+- それまでは Xcode からビルド可能：`ios-app/` を開き実行（Cmd+R）
+
+### 3) ソースからビルド
 ```bash
-# Homebrewでインストール
-brew install --cask quicpair
-
-# または直接ダウンロード
-curl -L https://github.com/yukihamada/QuicPair/releases/latest/download/QuicPair-macOS.dmg -o QuicPair.dmg
-open QuicPair.dmg
-```
-
-### iOS
-
-[App Store](https://apps.apple.com/app/quicpair) からダウンロード（準備中）
-
-### ソースからビルド
-
-```bash
-# リポジトリをクローン
 git clone https://github.com/yukihamada/QuicPair.git
 cd QuicPair
 
-# Go依存関係をインストール
-cd server && go mod tidy
+# Go サーバ
+cd server && go mod tidy && go run .
 
-# Goサーバーを起動
-go run .
-
-# 別ターミナルでMacアプリを起動
-open mac-app/QuicPair.xcodeproj
-# Xcodeで実行（Cmd+R）
+# macOS アプリ
+open ../mac-app/QuicPair.xcodeproj
+# iOS アプリ
+open ../ios-app/QuicPair.xcodeproj
 ```
 
-## 🎯 使い方
+---
 
-### 初回セットアップ
+## 使い方
+1. **Mac**でQuicPairを起動 → QRコード表示
+2. **iPhone**でQuicPairを起動 → QRスキャンでペアリング
+3. **チャット開始**（既定は `Local Only`）
+4. 大きい処理が必要なら**スコープスイッチ**を `Global (QUIVer)` に → 見積を確認 → 同意 → 実行
+5. 結果に**計算レシート**が自動添付（QUIVer経由時）
 
-1. **Mac**: QuicPairアプリを起動
-2. **自動セットアップ**: Ollamaが自動でインストールされます
-3. **QRコード表示**: 接続用QRコードが表示されます
-4. **iPhone**: QuicPair iOSアプリでQRコードをスキャン
-5. **接続完了**: 安全なP2P接続が確立されます
-6. **チャット開始**: 完全ローカルでAIと会話できます
+---
 
 ## 料金プラン
+
+モデルそのものの"解放"では課金しません。時間短縮・運用省力・接続品質・保証に価値を集中させます。
 
 **Core — 無料**
 - ローカル推論：無制限（手動で任意モデル導入可）
@@ -129,203 +123,78 @@ open mac-app/QuicPair.xcodeproj
 
 **Pro — ¥1,480/月（年払いあり）**
 - Fast Start：プリウォーム＋キャッシュで初回応答を短縮
-- Auto Optimizer：自動量子化・最適プロファイル選択
-- 検証済み Model Packs（ワンクリック導入・定期更新）
-- Multi‑Device（最大5台）／優先サポート／早期アクセス
-- Managed Connectivity（マネージドTURN/STUN：フェアユース）
-- 毎月の QUIVer クレジット同梱（重い処理のみ外出し）
+- Auto Optimizer：自動量子化 / 最適プロファイル選択（GGUF/MLX等）
+- Model Packs：検証済みモデルのワンクリック導入・自動更新
+- Multi‑Device：最大5台（Mac複数 / iPhone複数）
+- Managed Connectivity：マネージドTURN/STUN（フェアユース）
+- 優先サポート / 早期アクセス
+- 毎月の QUIVer クレジット同梱（重い処理だけ安全に外出し）
 
 **Team — ¥1,980/席/月（5席〜）**
-- 管理コンソール／SSO・SAML／MDM配布
-- ポリシー（例：外部オフロード禁止）
-- 私設TURN優先／BYOK／監査ログ（端末内）
+- 管理コンソール / SSO・SAML / MDM 配布
+- ポリシー（例：外部オフロード禁止 等）
+- 私設TURN優先 / BYOK / 監査ログ（端末内）
 
 **Enterprise — お問い合わせ**
-- SLA／セキュリティレビュー／コンプライアンス対応
-- プライベートマーケット／私設メッシュ／カスタムモデル
-
-### 利用可能なモデル
-
-無料版でも**全てのオープンモデル**が利用可能です（手動導入）。
-Pro版では検証済みModel Packsでワンクリック導入できます。
-
-| モデル例 | サイズ | 用途 |
-|---------|--------|------|
-| Gemma 3 270M | 165MB | 超高速レスポンス |
-| SmolLM2 135M | 77MB | 最軽量 |
-| Qwen3 1.7B-32B | 1-18GB | 汎用・高性能 |
-| Llama 3.3 70B | 40GB | 最高性能 |
-| Mistral/Phi3/Gemma2等 | 様々 | 用途別最適化 |
-
-## 🔧 設定
-
-### 環境変数
-
-```bash
-# Ollama設定
-export OLLAMA_URL="http://127.0.0.1:11434"  # Ollama接続先
-export OLLAMA_MODEL="qwen3:4b"              # 既定モデル
-
-# セキュリティ設定
-export DISABLE_STRICT_LOCAL="1"             # Strict Local Mode無効化（非推奨）
-export DEV_ALLOW_PLAINTEXT="1"              # 開発用：平文通信許可
-
-# TURN設定（NAT越え用）
-export TURN_URLS="turn:your-server:3478"
-export TURN_USER="username"
-export TURN_PASS="password"
-```
-
-### パフォーマンスチューニング
-
-```bash
-# TTFT測定
-curl http://localhost:8443/metrics/ttft
-
-# レスポンス例
-{
-  "p50_ms": 145,
-  "p90_ms": 230,
-  "count": 1024
-}
-```
-
-## 🧪 開発者向け
-
-### プロジェクト構成
-
-```
-QuicPair/
-├── server/              # Go WebRTCサーバー
-│   ├── main.go          # メインサーバー、エンドポイント
-│   ├── noise.go         # Noise IK暗号化実装
-│   ├── ollama_fast.go   # 高速Ollamaクライアント
-│   └── ollama_manager.go # モデル管理・最適化
-├── mac-app/             # Mac SwiftUIアプリ
-│   ├── Views/           # UI（ContentView、ModelSelectionView等）
-│   ├── Services/        # ビジネスロジック
-│   └── Models/          # データモデル
-├── ios-app/             # iOS Swiftアプリ  
-│   ├── Views/           # UI（ChatView、ScannerView等）
-│   └── Services/        # WebRTC、暗号化管理
-├── scripts/             # 開発・ビルドスクリプト
-│   ├── measure_ttft.sh  # TTFT測定
-│   ├── create_dmg.sh    # DMG作成
-│   └── prepare_github_release.sh # リリース準備
-├── docs/                # 技術仕様書
-├── marketing/           # マーケティング素材
-└── CLAUDE.md            # Claude Code開発ガイド
-```
-
-### 利用可能なスクリプト
-
-```bash
-# セットアップ
-./scripts/pull_free_models.sh       # 無料モデルをダウンロード
-
-# 開発・テスト
-./scripts/measure_ttft.sh           # TTFT測定
-./scripts/test_e2e_encryption.sh    # E2E暗号化テスト
-./scripts/test_mac_iphone_p2p.sh    # P2P接続テスト
-
-# ビルド・配布
-./scripts/create_dmg.sh             # DMGインストーラー作成
-./scripts/codesign.sh               # コード署名
-./scripts/prepare_github_release.sh # GitHubリリース準備
-```
-
-### コントリビューション
-
-```bash
-# フィーチャーブランチ作成
-git checkout -b feat/your-feature
-
-# 変更をコミット（Conventional Commits）
-git commit -m "feat(ios): add voice input support"
-
-# プルリクエスト作成前にチェック
-./scripts/test_all.sh               # 全テスト実行
-./scripts/measure_ttft.sh            # パフォーマンス確認
-```
-
-#### PR要件
-- [ ] 機能テスト完了
-- [ ] TTFT測定結果をPRに記載
-- [ ] セキュリティチェックリスト確認
-- [ ] ドキュメント更新（必要に応じて）
-
-## 🔐 セキュリティ
-
-### 暗号化アーキテクチャ
-
-```
-┌─────────────┐  Noise IK   ┌─────────────┐
-│   iPhone    │ ←─────────→ │     Mac     │  アプリケーション層
-│             │             │             │  (相互認証、前方秘匿性)
-└─────────────┘             └─────────────┘
-       ↓                           ↓
-┌─────────────┐   DTLS     ┌─────────────┐
-│  WebRTC     │ ←─────────→ │   WebRTC    │  トランスポート層
-└─────────────┘             └─────────────┘  (伝送路暗号化)
-```
-
-### セキュリティ機能
-
-- **Curve25519**: 鍵交換
-- **AES-256-GCM**: データ暗号化
-- **SHA-256**: メッセージ認証
-- **Secure Enclave**: 鍵保護（iOS）
-- **Keychain**: 鍵保管（macOS）
-
-### 監査・コンプライアンス
-
-- 定期的なセキュリティ監査
-- SOC 2 Type II準拠（Enterprise版）
-- GDPR/CCPA対応
-
-## 📊 パフォーマンス
-
-### ベンチマーク結果（M3 Pro）
-
-| メトリクス | Core | Pro | 目標 |
-|-----------|------|-----|------|
-| TTFT (p50) | 165ms | 145ms | <150ms |
-| TTFT (p90) | 245ms | 220ms | <250ms |
-| トークン/秒 | 25 | 35 | 20-40 |
-| 再接続時間 | 480ms | 380ms | <500ms |
-
-## 🌐 コミュニティ
-
-- **Website**: [yukihamada.github.io/QuicPair](https://yukihamada.github.io/QuicPair/)
-- **Issues**: [GitHub Issues](https://github.com/yukihamada/QuicPair/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yukihamada/QuicPair/discussions)
-- **Twitter**: [@yukihamada](https://twitter.com/yukihamada)
-
-## 📄 ライセンス
-
-MIT License - 詳細は [LICENSE](LICENSE) をご覧ください。
-
-商用利用も可能です。
-
-## 🙏 謝辞
-
-- [Ollama](https://ollama.ai) - ローカルAI推論エンジン
-- [Pion WebRTC](https://pion.ly) - Go WebRTC実装
-- [Noise Protocol](https://noiseprotocol.org) - 暗号プロトコル
-- すべてのコントリビューターとサポーター
+- SLA / セキュリティレビュー / コンプライアンス対応
+- プライベートマーケット / 私設メッシュ / カスタムモデル
 
 ---
 
-<p align="center">
-  <strong>⚡ 超高速 | 🔒 完全プライベート | 🏠 ローカル完結</strong>
-</p>
+## セキュリティ設計
+- **多層暗号**：WebRTC（DTLS‑SRTP/データチャネル）＋ アプリ層E2E（Noise IK: X25519/AES‑GCM/BLAKE2）
+- **鍵保護**：iOSは Secure Enclave、macOSは Keychain を使用
+- **到達性**：NAT越えに STUN/TURN を利用する場合あり（内容はE2E暗号化）
+- **ログポリシー**：ゼロテレメトリ（診断ログは端末内、会話内容は収集しません）
+- **注意**：QUIVer へオフロードするジョブは、実行ノード上で復号が必要な場合があります。機密データは `Local Only` を推奨。
 
-<p align="center">
-  Built with ❤️ for privacy-conscious AI enthusiasts
-</p>
+---
 
-<p align="center">
-  <a href="https://github.com/yukihamada/QuicPair/releases/latest">
-    <img src="https://img.shields.io/badge/Download-Latest%20Release-blue?style=for-the-badge" alt="Download">
-  </a>
-</p>
+## QUIVerとの連携
+
+QUIVer は「世界の遊休計算力を束ね、署名付きレシートで検証できる分散AIネットワーク」です。
+QuicPair からは **スコープスイッチ**で `Global (QUIVer)` を選択するだけで、見積→同意→実行→レシート添付まで自動化されます。
+
+```
+[QuicPair iPhone/Mac] --(同意)--> [QUIVer Mesh]
+                               ↘  署名付きレシート（モデルID/重みハッシュ/料金/署名）
+```
+
+- **QUIVer プロジェクト**: https://github.com/yukihamada/quiver
+- **ネットワークサイト**: https://QUIVer.network（Explorer/Docs/Status など）
+
+---
+
+## ベンチマークと計測
+- `./scripts/measure_ttft.sh` : 初回応答時間（TTFT）を測定
+- `./scripts/test_e2e_encryption.sh` : E2E暗号化の往復テスト
+- `GET /metrics/ttft` : 埋め込みメトリクス（例）
+  ```json
+  { "p50_ms": 145, "p90_ms": 230, "count": 1024 }
+  ```
+
+> 数値は 端末/モデル/量子化/温度で変動します。比較時は条件を明記してください。
+
+---
+
+## よくある質問
+
+**Q. "端末から一切出ない"とありますが、本当に？**  
+A. 既定はローカル完結です。NAT越え等で STUN/TURN を用いた中継が発生する場合もありますが、内容はE2E暗号化されています。QUIVerへオフロードする場合は明示同意が必要です。
+
+**Q. どのモデルが使えますか？**  
+A. Ollama/MLX 互換のオープンモデル全般。ProのModel Packで検証済みセットをワンクリック導入できます。
+
+---
+
+## 開発と貢献
+- **ブランチ**: `feat/*`, `fix/*`（Conventional Commits を推奨）
+- **事前チェック**: `./scripts/test_all.sh`, `./scripts/measure_ttft.sh`
+- **セキュリティ**: `SECURITY.md` / `THREAT_MODEL.md` / `security.txt`
+- **Issue / PR**: バグ報告・提案を歓迎します
+
+---
+
+## ライセンス
+
+MIT License © 2025 QuicPair Project
