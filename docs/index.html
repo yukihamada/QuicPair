@@ -711,6 +711,10 @@
                 端末外に平文を出さない完全エンドツーエンド暗号化。<br>
                 WebRTCベースのP2P接続で、150ms級の初回応答を実現<sup>※</sup>。
             </p>
+            <p style="margin-top: 1rem; font-size: 1.1rem; color: var(--success);">
+                <strong>Private first. Scale when you choose.</strong><br>
+                ローカル実行は永久無料。速さと便利さで選ぶプラン。
+            </p>
             <div class="hero-buttons">
                 <a href="#download" class="btn btn-primary">
                     無料で始める
@@ -755,18 +759,20 @@
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🏠</div>
-                    <h3>ローカル実行、ゼロテレメトリ</h3>
-                    <p>推論はあなたの端末で完結。内容がクラウドに保存されることはありません。</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3>Phone→Mac直通</h3>
-                    <p>iPhoneから自宅/社内のMac上モデルをそのまま呼び出し。外出先でも自分のデータは自分の端末の中。</p>
+                    <h3>完全ローカル実行</h3>
+                    <p>推論はあなたの端末で完結。すべてのオープンモデルが無料で利用可能。内容がクラウドに保存されることはありません。</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">⚡</div>
-                    <h3>一発セットアップ</h3>
-                    <p>QRペアリング→即利用。推奨モデルはバンドルと量子化を自動選択。</p>
+                    <h3>Pro: 瞬時に応答</h3>
+                    <p>Fast Startでモデルをプリウォーム。冷起動を待たずに150ms級の初回応答を実現。</p>
+                    <span style="font-size: 0.8rem; color: var(--text-light);">※無料版は手動起動</span>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Pro: 自動最適化</h3>
+                    <p>Model Packsでワンクリック導入。自動量子化とプロファイル選択で最高性能を引き出します。</p>
+                    <span style="font-size: 0.8rem; color: var(--text-light);">※無料版は手動設定</span>
                 </div>
             </div>
         </div>
@@ -820,7 +826,7 @@
     <section id="pricing" class="pricing">
         <div class="section-header">
             <h2>シンプルな料金プラン</h2>
-            <p>個人から企業まで、あらゆるニーズに対応</p>
+            <p>ローカル実行は無料。速さ・便利さ・つながりやすさで選ぶプラン</p>
         </div>
         <div class="pricing-grid">
             <div class="pricing-card">
@@ -829,14 +835,14 @@
                     <div class="pricing-price">¥0<span>/永久無料</span></div>
                 </div>
                 <ul class="pricing-features">
-                    <li>Mac 1台／モデル3つまで</li>
-                    <li>Gemma 3‑270M・SmolLM2‑135M・Qwen3‑1.7B</li>
-                    <li>手動インストール、アプリ層E2E</li>
-                    <li>オープンソース</li>
-                    <li class="disabled">検証済みモデル20+</li>
-                    <li class="disabled">自動量子化</li>
-                    <li class="disabled">高速起動キャッシュ</li>
-                    <li class="disabled">優先サポート</li>
+                    <li>ローカル推論：<strong>無制限</strong></li>
+                    <li>全モデル利用可（手動導入）</li>
+                    <li>端末ペアリング：1対1</li>
+                    <li>E2E暗号化・Strict Local Mode</li>
+                    <li class="disabled">Fast Start（高速起動）</li>
+                    <li class="disabled">自動量子化・最適化</li>
+                    <li class="disabled">マネージドTURN</li>
+                    <li class="disabled">Model Packs（検証済みモデル）</li>
                 </ul>
                 <a href="https://github.com/yukihamada/QuicPair" class="btn btn-secondary" style="width: 100%;" target="_blank" rel="noopener noreferrer">GitHubで入手</a>
             </div>
@@ -846,33 +852,33 @@
                 <div class="pricing-header">
                     <h3 class="pricing-name">Pro</h3>
                     <div class="pricing-price">¥1,480<span>/月</span></div>
-                    <div style="font-size: 0.8rem; color: var(--text-light); margin-top: 0.5rem;">年¥14,800</div>
+                    <div style="font-size: 0.8rem; color: var(--text-light); margin-top: 0.5rem;">年払い ¥14,800</div>
                 </div>
                 <ul class="pricing-features">
-                    <li><strong>iPhone↔Mac接続 無制限</strong>（同時5台）</li>
-                    <li><strong>検証済みモデル20+</strong></li>
-                    <li><strong>自動量子化／高速起動キャッシュ</strong></li>
-                    <li><strong>自己ホストSTUN/TURNテンプレ</strong></li>
-                    <li><strong>E2E保証</strong></li>
-                    <li>優先サポート／早期アクセス</li>
-                    <li>連携拡張</li>
+                    <li><strong>Fast Start</strong>：TTFT短縮</li>
+                    <li><strong>Auto Optimizer</strong>：自動量子化</li>
+                    <li><strong>Model Packs</strong>：ワンクリック導入</li>
+                    <li><strong>Multi-Device</strong>：最大5台</li>
+                    <li><strong>Managed TURN</strong>：安定接続</li>
+                    <li>優先サポート・早期アクセス</li>
+                    <li>QUIVerクレジット同梱</li>
                 </ul>
-                <a href="#download" class="btn btn-primary" style="width: 100%;">無料トライアル開始</a>
+                <a href="#download" class="btn btn-primary" style="width: 100%;">7日間無料トライアル</a>
             </div>
             
             <div class="pricing-card">
                 <div class="pricing-header">
                     <h3 class="pricing-name">Team</h3>
-                    <div class="pricing-price">¥4,900<span>/月</span></div>
-                    <div style="font-size: 0.8rem; color: var(--text-light); margin-top: 0.5rem;">5席</div>
+                    <div class="pricing-price">¥1,980<span>/席/月</span></div>
+                    <div style="font-size: 0.8rem; color: var(--text-light); margin-top: 0.5rem;">5席から</div>
                 </div>
                 <ul class="pricing-features">
-                    <li>管理ダッシュボード</li>
-                    <li>SSO・SAML</li>
-                    <li>オンプレ展開、BYOK</li>
+                    <li>管理コンソール</li>
+                    <li>SSO・SAML対応</li>
+                    <li>ポリシー配布</li>
+                    <li>私設TURN優先・BYOK</li>
                     <li>監査ログ（端末内）</li>
-                    <li>MDM配布ガイド</li>
-                    <li>SLA相談</li>
+                    <li>MDM配布テンプレート</li>
                 </ul>
                 <a href="mailto:team@quicpair.app" class="btn btn-secondary" style="width: 100%;">お問い合わせ</a>
             </div>
@@ -884,7 +890,8 @@
                     <div class="pricing-price">お問い合わせ</div>
                 </div>
                 <ul class="pricing-features">
-                    <li>セキュリティレビュー同席、個別要件対応、SLA</li>
+                    <li>SLA保証・セキュリティレビュー・コンプライアンス対応</li>
+                    <li>プライベートマーケット・私設メッシュ・カスタムモデル</li>
                 </ul>
                 <a href="mailto:enterprise@quicpair.app" class="btn btn-secondary" style="width: 100%;">お問い合わせ</a>
             </div>

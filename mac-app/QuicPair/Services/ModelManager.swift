@@ -14,48 +14,47 @@ class ModelManager: ObservableObject {
     
     private func loadDefaultModels() {
         availableModels = [
-            // Free Tier Models (Core Version)
+            // All models available for manual use in Core
+            // Pro features: Fast Start, Auto Optimizer, Model Packs
             AIModel(name: "gemma3:270m", displayName: "Gemma 3 270M", size: "165MB", description: "Google's ultra-compact model", isPro: false),
             AIModel(name: "smollm2:135m", displayName: "SmolLM2 135M", size: "77MB", description: "Ultra-lightweight model", isPro: false),
             AIModel(name: "qwen3:1.7b", displayName: "Qwen3 1.7B", size: "1.0GB", description: "Small Qwen3 model", isPro: false),
+            AIModel(name: "qwen3:0.6b", displayName: "Qwen3 0.6B", size: "400MB", description: "Ultra-compact Qwen3 model", isPro: false),
+            AIModel(name: "qwen3:4b", displayName: "Qwen3 4B", size: "2.4GB", description: "Efficient Qwen3 model", isPro: false),
+            AIModel(name: "qwen3:8b", displayName: "Qwen3 8B", size: "4.7GB", description: "Balanced Qwen3 model", isPro: false),
+            AIModel(name: "qwen3:14b", displayName: "Qwen3 14B", size: "8.2GB", description: "Powerful Qwen3 model", isPro: false),
+            AIModel(name: "qwen3:32b", displayName: "Qwen3 32B", size: "18GB", description: "Large Qwen3 model", isPro: false),
+            AIModel(name: "qwen3-coder:30b", displayName: "Qwen3 Coder 30B", size: "17GB", description: "Most agentic code model in Qwen series", isPro: false),
             
-            // Pro Tier Models
-            AIModel(name: "qwen3:0.6b", displayName: "Qwen3 0.6B", size: "400MB", description: "Ultra-compact Qwen3 model", isPro: true),
-            AIModel(name: "qwen3:4b", displayName: "Qwen3 4B", size: "2.4GB", description: "Efficient Qwen3 model", isPro: true),
-            AIModel(name: "qwen3:8b", displayName: "Qwen3 8B", size: "4.7GB", description: "Balanced Qwen3 model", isPro: true),
-            AIModel(name: "qwen3:14b", displayName: "Qwen3 14B", size: "8.2GB", description: "Powerful Qwen3 model", isPro: true),
-            AIModel(name: "qwen3:32b", displayName: "Qwen3 32B", size: "18GB", description: "Large Qwen3 model", isPro: true),
-            AIModel(name: "qwen3-coder:30b", displayName: "Qwen3 Coder 30B", size: "17GB", description: "Most agentic code model in Qwen series", isPro: true),
+            // All models available for Core (manual installation)
+            AIModel(name: "gpt-oss:20b", displayName: "GPT-OSS 20B", size: "12GB", description: "OpenAI's open-weight model for local use", isPro: false),
+            AIModel(name: "gpt-oss:120b", displayName: "GPT-OSS 120B", size: "70GB", description: "OpenAI's flagship open-weight model", isPro: false),
             
-            // OpenAI GPT-OSS (2025) - Pro Only
-            AIModel(name: "gpt-oss:20b", displayName: "GPT-OSS 20B", size: "12GB", description: "OpenAI's open-weight model for local use", isPro: true),
-            AIModel(name: "gpt-oss:120b", displayName: "GPT-OSS 120B", size: "70GB", description: "OpenAI's flagship open-weight model", isPro: true),
+            // Extended Context Models
+            AIModel(name: "mannix/jan-nano", displayName: "Jan Nano 32K", size: "2.4GB", description: "4B model optimized for deep research (32K context)", isPro: false),
+            AIModel(name: "yasserrmd/jan-nano-4b", displayName: "Jan Nano 128K", size: "2.4GB", description: "4B model with native 128K context window", isPro: false),
             
-            // Jan-Nano Series (Extended Context) - Pro Only
-            AIModel(name: "mannix/jan-nano", displayName: "Jan Nano 32K", size: "2.4GB", description: "4B model optimized for deep research (32K context)", isPro: true),
-            AIModel(name: "yasserrmd/jan-nano-4b", displayName: "Jan Nano 128K", size: "2.4GB", description: "4B model with native 128K context window", isPro: true),
-            
-            // Previous Generation Models - Pro Only
-            AIModel(name: "qwen2.5:3b", displayName: "Qwen2.5 3B", size: "1.9GB", description: "Fast and efficient for most tasks", isPro: true),
-            AIModel(name: "qwen2.5:7b", displayName: "Qwen2.5 7B", size: "4.4GB", description: "High-quality Qwen model", isPro: true),
-            AIModel(name: "qwen2.5:14b", displayName: "Qwen2.5 14B", size: "8.2GB", description: "Powerful Qwen model", isPro: true),
-            AIModel(name: "qwen2.5-coder:7b", displayName: "Qwen2.5 Coder 7B", size: "4.4GB", description: "Specialized for coding", isPro: true),
-            AIModel(name: "phi3:mini", displayName: "Phi3 Mini", size: "2.2GB", description: "Microsoft's compact model", isPro: true),
-            AIModel(name: "phi3:medium", displayName: "Phi3 Medium", size: "7.9GB", description: "Microsoft's balanced model", isPro: true),
-            AIModel(name: "smollm2:360m", displayName: "SmolLM2 360M", size: "200MB", description: "Lightweight model", isPro: true),
-            AIModel(name: "llama3.2:1b", displayName: "Llama 3.2 1B", size: "1.3GB", description: "Meta's compact model", isPro: true),
-            AIModel(name: "llama3.2:3b", displayName: "Llama 3.2 3B", size: "2.0GB", description: "Meta's balanced model", isPro: true),
-            AIModel(name: "llama3.3:70b", displayName: "Llama 3.3 70B", size: "40GB", description: "Meta's latest flagship model", isPro: true),
-            AIModel(name: "gemma2:2b", displayName: "Gemma2 2B", size: "1.6GB", description: "Google's efficient model", isPro: true),
-            AIModel(name: "gemma2:9b", displayName: "Gemma2 9B", size: "5.4GB", description: "Google's powerful model", isPro: true),
-            AIModel(name: "gemma2:27b", displayName: "Gemma2 27B", size: "16GB", description: "Google's large model", isPro: true),
-            AIModel(name: "mistral:7b", displayName: "Mistral 7B", size: "4.1GB", description: "High-quality general purpose", isPro: true),
-            AIModel(name: "mistral-nemo:12b", displayName: "Mistral Nemo 12B", size: "7.0GB", description: "Mistral's latest model", isPro: true),
-            AIModel(name: "codellama:7b", displayName: "Code Llama 7B", size: "3.8GB", description: "Specialized for coding tasks", isPro: true),
-            AIModel(name: "codellama:13b", displayName: "Code Llama 13B", size: "7.3GB", description: "Large coding model", isPro: true),
-            AIModel(name: "deepseek-coder:6.7b", displayName: "DeepSeek Coder 6.7B", size: "3.8GB", description: "Advanced coding model", isPro: true),
-            AIModel(name: "solar:10.7b", displayName: "Solar 10.7B", size: "6.1GB", description: "High-performance model", isPro: true),
-            AIModel(name: "nous-hermes2:10.7b", displayName: "Nous Hermes2 10.7B", size: "6.1GB", description: "Fine-tuned assistant model", isPro: true)
+            // Other Popular Models
+            AIModel(name: "qwen2.5:3b", displayName: "Qwen2.5 3B", size: "1.9GB", description: "Fast and efficient for most tasks", isPro: false),
+            AIModel(name: "qwen2.5:7b", displayName: "Qwen2.5 7B", size: "4.4GB", description: "High-quality Qwen model", isPro: false),
+            AIModel(name: "qwen2.5:14b", displayName: "Qwen2.5 14B", size: "8.2GB", description: "Powerful Qwen model", isPro: false),
+            AIModel(name: "qwen2.5-coder:7b", displayName: "Qwen2.5 Coder 7B", size: "4.4GB", description: "Specialized for coding", isPro: false),
+            AIModel(name: "phi3:mini", displayName: "Phi3 Mini", size: "2.2GB", description: "Microsoft's compact model", isPro: false),
+            AIModel(name: "phi3:medium", displayName: "Phi3 Medium", size: "7.9GB", description: "Microsoft's balanced model", isPro: false),
+            AIModel(name: "smollm2:360m", displayName: "SmolLM2 360M", size: "200MB", description: "Lightweight model", isPro: false),
+            AIModel(name: "llama3.2:1b", displayName: "Llama 3.2 1B", size: "1.3GB", description: "Meta's compact model", isPro: false),
+            AIModel(name: "llama3.2:3b", displayName: "Llama 3.2 3B", size: "2.0GB", description: "Meta's balanced model", isPro: false),
+            AIModel(name: "llama3.3:70b", displayName: "Llama 3.3 70B", size: "40GB", description: "Meta's latest flagship model", isPro: false),
+            AIModel(name: "gemma2:2b", displayName: "Gemma2 2B", size: "1.6GB", description: "Google's efficient model", isPro: false),
+            AIModel(name: "gemma2:9b", displayName: "Gemma2 9B", size: "5.4GB", description: "Google's powerful model", isPro: false),
+            AIModel(name: "gemma2:27b", displayName: "Gemma2 27B", size: "16GB", description: "Google's large model", isPro: false),
+            AIModel(name: "mistral:7b", displayName: "Mistral 7B", size: "4.1GB", description: "High-quality general purpose", isPro: false),
+            AIModel(name: "mistral-nemo:12b", displayName: "Mistral Nemo 12B", size: "7.0GB", description: "Mistral's latest model", isPro: false),
+            AIModel(name: "codellama:7b", displayName: "Code Llama 7B", size: "3.8GB", description: "Specialized for coding tasks", isPro: false),
+            AIModel(name: "codellama:13b", displayName: "Code Llama 13B", size: "7.3GB", description: "Large coding model", isPro: false),
+            AIModel(name: "deepseek-coder:6.7b", displayName: "DeepSeek Coder 6.7B", size: "3.8GB", description: "Advanced coding model", isPro: false),
+            AIModel(name: "solar:10.7b", displayName: "Solar 10.7B", size: "6.1GB", description: "High-performance model", isPro: false),
+            AIModel(name: "nous-hermes2:10.7b", displayName: "Nous Hermes2 10.7B", size: "6.1GB", description: "Fine-tuned assistant model", isPro: false)
         ]
     }
     
@@ -66,13 +65,8 @@ class ModelManager: ObservableObject {
     }
     
     func selectModel(_ modelName: String) {
-        // Check if user can use this model
-        if !licenseManager.canUseModel(modelName) {
-            error = "This model requires QuicPair Pro"
-            licenseManager.showPaywallForFeature("Premium Models")
-            return
-        }
-        
+        // All models available for Core users (manual installation)
+        // Pro users get Fast Start, Auto Optimizer, and Model Packs
         selectedModel = modelName
         userDefaults.set(modelName, forKey: "selectedModel")
         print("🖥️ Selected model: \(modelName)")
@@ -151,13 +145,8 @@ class ModelManager: ObservableObject {
     }
     
     func downloadModel(_ modelName: String) async {
-        // Check if user can download this model
-        if let licenseManager = getLicenseManager(),
-           !licenseManager.canDownloadModel(modelName) {
-            error = "This model requires QuicPair Pro"
-            licenseManager.showPaywallForFeature("Premium Models")
-            return
-        }
+        // Core users can download models manually
+        // Pro users get Model Packs for one-click installation with optimizations
         
         isLoading = true
         error = nil
@@ -272,9 +261,9 @@ class ModelManager: ObservableObject {
     }
     
     private func getProStatus(_ name: String) -> Bool {
-        // Core models are free, newer/larger models require Pro
-        let freeModels = ["gemma3:270m", "smollm2:135m", "qwen3:1.7b"]
-        return !freeModels.contains(name)
+        // All models are free to use manually in Core
+        // Pro provides Fast Start, Auto Optimizer, and Model Packs
+        return false
     }
     
     // MARK: - Ollama Integration
