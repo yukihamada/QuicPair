@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuicPair - 完全プライベートなAIチャット</title>
-    <meta name="description" content="QuicPairは完全プライベートなAIチャットアプリ。あなたのデータは端末から出ません。Mac↔iPhone間で安全にAIと会話。">
-    <meta property="og:title" content="QuicPair - 完全プライベートなAIチャット">
-    <meta property="og:description" content="データが端末から出ない、完全プライベートなAIチャット。E2E暗号化、超高速レスポンス、オープンソース。">
+    <title>QuicPair — MacのローカルLLMを、iPhoneから瞬時に</title>
+    <meta name="description" content="端末外に平文を出さない完全エンドツーエンド暗号化。WebRTCベースのP2P接続で、150ms級の初回応答を実現。">
+    <meta property="og:title" content="QuicPair — MacのローカルLLMを、iPhoneから瞬時に">
+    <meta property="og:description" content="端末外に平文を出さない完全エンドツーエンド暗号化。WebRTCベースのP2P接続で、150ms級の初回応答を実現。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://pair.quiver.network">
     <meta property="og:image" content="https://pair.quiver.network/og-image.svg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="QuicPair - 完全プライベートなAIチャット">
-    <meta name="twitter:description" content="データが端末から出ない、完全プライベートなAIチャット。E2E暗号化、超高速レスポンス、オープンソース。">
+    <meta name="twitter:title" content="QuicPair — MacのローカルLLMを、iPhoneから瞬時に">
+    <meta name="twitter:description" content="端末外に平文を出さない完全エンドツーエンド暗号化。WebRTCベースのP2P接続で、150ms級の初回応答を実現。">
     <meta name="twitter:image" content="https://pair.quiver.network/og-image.svg">
     <link rel="icon" type="image/svg+xml" href="./favicon.svg">
     <link rel="apple-touch-icon" href="./apple-touch-icon.png">
@@ -597,6 +597,20 @@
         .hero-content > :nth-child(3) { animation-delay: 0.3s; }
         .hero-content > :nth-child(4) { animation-delay: 0.4s; }
 
+        /* Hero Screenshot */
+        .hero-screenshot {
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .hero-screenshot img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+        }
+
         /* Smooth scroll */
         html {
             scroll-behavior: smooth;
@@ -692,10 +706,10 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>完全プライベートな<br>AIチャット体験</h1>
+            <h1>QuicPair — MacのローカルLLMを、<br>iPhoneから瞬時に。</h1>
             <p class="hero-subtitle">
-                あなたのデータは端末から出ません。<br>
-                Mac↔iPhone間で安全に、超高速でAIと会話。
+                端末外に平文を出さない完全エンドツーエンド暗号化。<br>
+                WebRTCベースのP2P接続で、150ms級の初回応答を実現<sup>※</sup>。
             </p>
             <div class="hero-buttons">
                 <a href="#download" class="btn btn-primary">
@@ -705,10 +719,7 @@
                     </svg>
                 </a>
                 <a href="https://github.com/yukihamada/QuicPair" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M10 0C4.477 0 0 4.477 0 10c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0110 4.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C17.137 18.163 20 14.418 20 10c0-5.523-4.477-10-10-10z"/>
-                    </svg>
-                    ソースコード
+                    GitHub
                 </a>
             </div>
             <div class="hero-stats">
@@ -729,6 +740,9 @@
                     <span class="stat-label">オープンソース</span>
                 </div>
             </div>
+            <div class="hero-screenshot">
+                <img src="./quicpair-screenshot.png" alt="QuicPair - iPhone to Mac chat interface" loading="lazy">
+            </div>
         </div>
     </section>
 
@@ -736,39 +750,23 @@
     <section id="features" class="features">
         <div class="features-container">
             <div class="section-header">
-                <h2>プライバシーファーストの機能</h2>
-                <p>すべての機能が、あなたのプライバシーを最優先に設計されています</p>
+                <h2>3つの強み</h2>
             </div>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <h3>完全ローカル処理</h3>
-                    <p>すべてのAI推論はあなたのデバイス上で実行。データが外部に送信されることはありません。OllamaベースでLLMを完全にローカル実行。</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>超高速レスポンス</h3>
-                    <p>WebRTC P2P接続により、平均150ms以下の初回応答時間を実現。ネットワーク遅延を最小限に抑えた、ストレスフリーな会話体験。</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔐</div>
-                    <h3>軍事レベルの暗号化</h3>
-                    <p>Noise IKプロトコル（Curve25519 + AES-256-GCM）による二重暗号化。WebRTC DTLSに加えて、アプリケーション層でもE2E暗号化。</p>
+                    <div class="feature-icon">🏠</div>
+                    <h3>ローカル実行、ゼロテレメトリ</h3>
+                    <p>推論はあなたの端末で完結。内容がクラウドに保存されることはありません。</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📱</div>
-                    <h3>簡単QRペアリング</h3>
-                    <p>MacでQRコードを表示、iPhoneでスキャンするだけの簡単接続。面倒な設定は一切不要で、すぐに使い始められます。</p>
+                    <h3>Phone→Mac直通</h3>
+                    <p>iPhoneから自宅/社内のMac上モデルをそのまま呼び出し。外出先でも自分のデータは自分の端末の中。</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🤖</div>
-                    <h3>豊富なAIモデル</h3>
-                    <p>用途に応じて最適なモデルを選択。軽量なSmolLM2から高性能なQwen3まで、20以上のモデルに対応（Pro版）。</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🌐</div>
-                    <h3>完全オープンソース</h3>
-                    <p>すべてのソースコードを公開。セキュリティを自分で検証でき、カスタマイズも自由。コミュニティと共に成長します。</p>
+                    <div class="feature-icon">⚡</div>
+                    <h3>一発セットアップ</h3>
+                    <p>QRペアリング→即利用。推奨モデルはバンドルと量子化を自動選択。</p>
                 </div>
             </div>
         </div>
@@ -779,36 +777,35 @@
         <div class="security-content">
             <div class="security-info">
                 <div class="section-header" style="text-align: left;">
-                    <h2>エンタープライズグレードの<br>セキュリティ</h2>
-                    <p>あなたのプライバシーを守る、多層防御システム</p>
+                    <h2>セキュリティ</h2>
                 </div>
                 <div class="security-features">
                     <div class="security-item">
+                        <div class="security-item-icon">🔐</div>
+                        <div>
+                            <h4>プロトコル</h4>
+                            <p>Noise IK（X25519 / AES‑GCM / BLAKE2s）でアプリ層E2E。WebRTCのDTLS‑SRTP/データチャネルにアプリ層暗号を重ねる多層防御。</p>
+                        </div>
+                    </div>
+                    <div class="security-item">
                         <div class="security-item-icon">🔑</div>
                         <div>
-                            <h4>Curve25519鍵交換</h4>
-                            <p>前方秘匿性を保証する最新の楕円曲線暗号。過去の通信内容は未来永劫保護されます。</p>
+                            <h4>鍵管理</h4>
+                            <p>Secure Enclave対応（iOS）。ペア間鍵はセッション更新＆定期ローテーション。</p>
                         </div>
                     </div>
                     <div class="security-item">
-                        <div class="security-item-icon">🛡️</div>
+                        <div class="security-item-icon">🌐</div>
                         <div>
-                            <h4>AES-256-GCM暗号化</h4>
-                            <p>米国政府機密情報にも使用される暗号化標準。量子コンピュータにも耐性があります。</p>
+                            <h4>接続経路</h4>
+                            <p>P2Pを優先。環境によりSTUN/TURN経由になる場合がありますが、内容は端末でのみ復号されます<sup>※</sup>。</p>
                         </div>
                     </div>
                     <div class="security-item">
-                        <div class="security-item-icon">💾</div>
+                        <div class="security-item-icon">✅</div>
                         <div>
-                            <h4>Secure Enclave対応</h4>
-                            <p>iOSデバイスではハードウェアレベルの鍵保護。物理的な攻撃からも守ります。</p>
-                        </div>
-                    </div>
-                    <div class="security-item">
-                        <div class="security-item-icon">🔄</div>
-                        <div>
-                            <h4>自動鍵ローテーション</h4>
-                            <p>30日ごとの自動鍵更新で長期的なセキュリティを確保。常に最高レベルの保護を維持。</p>
+                            <h4>透明性</h4>
+                            <p>100%オープンソース、署名付きリリース、再現ビルド手順を公開。</p>
                         </div>
                     </div>
                 </div>
@@ -832,13 +829,13 @@
                     <div class="pricing-price">¥0<span>/永久無料</span></div>
                 </div>
                 <ul class="pricing-features">
-                    <li>2つの軽量AIモデル</li>
-                    <li>SmolLM2 135M & Qwen3 1.7B</li>
-                    <li>1デバイス接続</li>
-                    <li>E2E暗号化</li>
+                    <li>Mac 1台／モデル2つまで</li>
+                    <li>SmolLM2‑135M・Qwen3‑1.7B</li>
+                    <li>手動インストール、アプリ層E2E</li>
                     <li>オープンソース</li>
-                    <li class="disabled">プレミアムモデル</li>
-                    <li class="disabled">複数デバイス対応</li>
+                    <li class="disabled">検証済みモデル20+</li>
+                    <li class="disabled">自動量子化</li>
+                    <li class="disabled">高速起動キャッシュ</li>
                     <li class="disabled">優先サポート</li>
                 </ul>
                 <a href="https://github.com/yukihamada/QuicPair" class="btn btn-secondary" style="width: 100%;" target="_blank" rel="noopener noreferrer">GitHubで入手</a>
@@ -849,34 +846,45 @@
                 <div class="pricing-header">
                     <h3 class="pricing-name">Pro</h3>
                     <div class="pricing-price">¥1,480<span>/月</span></div>
+                    <div style="font-size: 0.8rem; color: var(--text-light); margin-top: 0.5rem;">年¥14,800</div>
                 </div>
                 <ul class="pricing-features">
-                    <li>20以上のAIモデル</li>
-                    <li>Qwen3 32B, GPT-OSS, Llama 3.3</li>
-                    <li>最大5デバイス接続</li>
-                    <li>無制限の使用時間</li>
-                    <li>すべてのCore機能</li>
-                    <li>優先技術サポート</li>
-                    <li>早期アクセス</li>
-                    <li>7日間無料トライアル</li>
+                    <li><strong>iPhone↔Mac接続 無制限</strong>（同時5台）</li>
+                    <li><strong>検証済みモデル20+</strong></li>
+                    <li><strong>自動量子化／高速起動キャッシュ</strong></li>
+                    <li><strong>自己ホストSTUN/TURNテンプレ</strong></li>
+                    <li><strong>E2E保証</strong></li>
+                    <li>優先サポート／早期アクセス</li>
+                    <li>連携拡張</li>
                 </ul>
                 <a href="#download" class="btn btn-primary" style="width: 100%;">無料トライアル開始</a>
             </div>
             
             <div class="pricing-card">
                 <div class="pricing-header">
+                    <h3 class="pricing-name">Team</h3>
+                    <div class="pricing-price">¥4,900<span>/月</span></div>
+                    <div style="font-size: 0.8rem; color: var(--text-light); margin-top: 0.5rem;">5席</div>
+                </div>
+                <ul class="pricing-features">
+                    <li>管理ダッシュボード</li>
+                    <li>SSO・SAML</li>
+                    <li>オンプレ展開、BYOK</li>
+                    <li>監査ログ（端末内）</li>
+                    <li>MDM配布ガイド</li>
+                    <li>SLA相談</li>
+                </ul>
+                <a href="mailto:team@quicpair.app" class="btn btn-secondary" style="width: 100%;">お問い合わせ</a>
+            </div>
+        </div>
+        <div class="pricing-grid" style="margin-top: 2rem; grid-template-columns: 1fr;">
+            <div class="pricing-card">
+                <div class="pricing-header">
                     <h3 class="pricing-name">Enterprise</h3>
                     <div class="pricing-price">お問い合わせ</div>
                 </div>
                 <ul class="pricing-features">
-                    <li>すべてのPro機能</li>
-                    <li>カスタムモデル対応</li>
-                    <li>管理ダッシュボード</li>
-                    <li>SSO/SAML連携</li>
-                    <li>オンプレミス展開</li>
-                    <li>SLA保証</li>
-                    <li>専任サポート</li>
-                    <li>コンプライアンス対応</li>
+                    <li>セキュリティレビュー同席、個別要件対応、SLA</li>
                 </ul>
                 <a href="mailto:enterprise@quicpair.app" class="btn btn-secondary" style="width: 100%;">お問い合わせ</a>
             </div>
@@ -906,6 +914,17 @@
         <p style="margin-top: 2rem; color: var(--text-light);">
             または、<a href="https://github.com/yukihamada/QuicPair" style="color: var(--primary);" target="_blank" rel="noopener noreferrer">ソースコードからビルド</a>
         </p>
+    </section>
+
+    <!-- Footnotes -->
+    <section class="footnotes" style="background: var(--bg-light); padding: 2rem 0; font-size: 0.75rem; color: var(--text-light);">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+            <p>※ 初回応答150msは、M3/M2クラス＋軽量モデル（例：SmolLM2‑135M）での温起動時測定の目安です。端末/モデル/量子化/温度で変動します。</p>
+            <p>※ STUN/TURNはNAT越えのための標準的仕組みで、場合により中継サーバを通過します。データはDTLS‑SRTPおよびアプリ層E2Eで保護され、サーバが内容を復号することはできません。</p>
+            <p>暗号スイートはNoise Protocol Frameworkに準拠。</p>
+            <p>Secure Enclaveの詳細はApple公式ドキュメントを参照。</p>
+            <p>量子計算との関係：AES‑256はGroverによる探索でも約2¹²⁸相当の安全性。現時点の実用上十分な強度というのが専門的コンセンサスです。</p>
+        </div>
     </section>
 
     <!-- Footer -->
