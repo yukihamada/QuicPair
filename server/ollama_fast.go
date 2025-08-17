@@ -160,12 +160,15 @@ func GetFastestModel(promptLength int) string {
 	if promptLength < 20 {
 		// Very short prompts - use smallest model
 		return "smollm2:135m"
+	} else if promptLength < 50 {
+		// Short prompts - use Gemma 3 270M
+		return "gemma3:270m"
 	} else if promptLength < 100 {
-		// Short to medium prompts
-		return "qwen2.5:3b"
+		// Medium prompts
+		return "qwen3:1.7b"
 	} else {
 		// Longer prompts - use model with better context handling
-		return "phi3:mini"
+		return "qwen3:4b"
 	}
 }
 
@@ -189,7 +192,7 @@ func initFastOllama() {
 	globalFastClient = NewFastOllamaClient(ollamaURL)
 	
 	// Preload models in parallel
-	models := []string{"smollm2:135m", "qwen2.5:3b", "phi3:mini"}
+	models := []string{"smollm2:135m", "gemma3:270m", "qwen3:1.7b", "qwen3:4b"}
 	var wg sync.WaitGroup
 	
 	for _, model := range models {

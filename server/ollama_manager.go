@@ -154,6 +154,10 @@ func (om *OllamaManager) GetOptimizedSettings(model string) map[string]interface
 	case "smollm2:135m":
 		settings["num_ctx"] = 1024
 		settings["num_thread"] = 4 // Minimal threads for tiny model
+	case "gemma3:270m":
+		settings["num_ctx"] = 1536
+		settings["num_thread"] = 4 // Optimized for Gemma 3 270M
+		settings["num_gpu"] = 1
 	default:
 		settings["num_ctx"] = 4096
 	}
@@ -179,7 +183,7 @@ func initOllamaManager() {
 
 	// Warmup default models
 	go func() {
-		models := []string{"qwen2.5:3b", "phi3:mini", "smollm2:135m"}
+		models := []string{"smollm2:135m", "gemma3:270m", "qwen3:1.7b", "qwen3:4b"}
 		for _, model := range models {
 			if err := globalOllamaManager.WarmupModel(model); err != nil {
 				log.Printf("Failed to warmup %s: %v", model, err)

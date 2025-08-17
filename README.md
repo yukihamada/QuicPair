@@ -123,6 +123,7 @@ open mac-app/QuicPair.xcodeproj
 #### 無料版（Core）
 | モデル | サイズ | 説明 |
 |-------|--------|------|
+| Gemma 3 270M | 165MB | Google最新の超小型モデル |
 | SmolLM2 135M | 77MB | 超軽量モデル |
 | Qwen3 1.7B | 1.0GB | バランス型 |
 
@@ -198,6 +199,9 @@ QuicPair/
 ### 利用可能なスクリプト
 
 ```bash
+# セットアップ
+./scripts/pull_free_models.sh       # 無料モデルをダウンロード
+
 # 開発・テスト
 ./scripts/measure_ttft.sh           # TTFT測定
 ./scripts/test_e2e_encryption.sh    # E2E暗号化テスト
